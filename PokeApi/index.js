@@ -27,6 +27,32 @@ boton.onclick = function () {
         //    - datos.name: nombre del Pokémon
         //    - datos.sprites.front_shiny: URL de la imagen (sprite shiny)
         titulo.textContent = datos.name
+        imagen.src = datos.sprites.front_default
+    })
+}
+boton.onclick = function () {
+
+    // 3) fetch() hace una solicitud HTTP (GET por defecto) a la URL dada.
+    //    Devuelve una Promesa que se resuelve con un objeto Response
+    //    cuando el servidor contesta.
+    fetch('https://pokeapi.co/api/v2/pokemon-form/157/')
+
+    // 4) Primer .then():
+    //    Recibe el objeto Response (lo llamamos "respuesta").
+    //    respuesta.json() lee el cuerpo de la respuesta y lo convierte a
+    //    un objeto JavaScript (desde JSON). OJO: json() también devuelve
+    //    otra Promesa, por eso encadenamos otro .then().
+    .then(respuesta => respuesta.json())
+
+    // 5) Segundo .then():
+    //    Acá "datos" ya es el objeto JS con la información del Pokémon.
+    .then(datos => {
+        console.log(datos) // Mostramos todo el objeto en la consola para inspección.
+
+        // 6) Actualizamos el DOM usando propiedades del objeto "datos":
+        //    - datos.name: nombre del Pokémon
+        //    - datos.sprites.front_shiny: URL de la imagen (sprite shiny)
+        titulo.textContent = datos.name
         imagen.src = datos.sprites.front_shiny
     })
 }
