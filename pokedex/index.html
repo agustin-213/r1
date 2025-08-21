@@ -9,18 +9,18 @@
 <body>
   <style>
     body {
-      background: #f5f6fa;
       font-family: 'Segoe UI', Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      background: linear-gradient(rgb(224, 87, 33),85%, rgb(255, 230, 9));
     }
 
     .caja {
-      background: #fff;
+      background: #e04f15;
       border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 24px rgba(172, 13, 8, 0.39);
       padding: 32px 24px;
       max-width: 320px;
       width: 100%;
@@ -45,12 +45,12 @@
       object-fit: contain;
       margin-bottom: 20px;
       border-radius: 12px;
-      background: #f1f2f6;
+      background: #fca798;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .botones button {
-  background: #0984e3;
+  background: #d34402;
   color: #fff;
   border: none;
   padding: 12px 20px;
@@ -59,13 +59,12 @@
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 12px rgba(9, 132, 227, 0.3);
+  box-shadow: 0 4px 12px rgb(114, 3, 3);
 }
-
 .botones button:hover {
   background: #74b9ff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(9, 132, 227, 0.4);
+  box-shadow: 0 6px 16px rgb(114, 3, 3);
 }
 
 .botones button:active {
@@ -73,12 +72,19 @@
   box-shadow: 0 2px 8px rgba(9, 132, 227, 0.4);
 }
 
+#pokedex-input{
+  color: #333; /* Color del texto */
+  background-color: #f0f0f0; /* Color de fondo */
+  border: 1px solid rgb(165, 5, 5); /* Borde */
+  padding: 8px; /* Relleno */
+  font-size: 16px; /* Tamaño de fuente */
+}
   </style>
 
   <div class="caja">
     <h1 id="titulo">Pokédex</h1>
-    <img id="imagen" src="" alt="Aquí aparecerá el Pokémon">
-    <textarea id="pokedex-input" rows="3" cols="25" placeholder="Escribe un número de Pokédex"></textarea>
+    <img id="imagen" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAclBMVEXdLAD///8AAAC9vb3/6+6lpaXiLQDnLgCPHQDGxsbBwcF7e3u4uLjcHADun5r/8PTaAAD/9fnf39+dnZ3/+v6OEADwpaHOzs6nra2OAADxMACIGwCWHgDm5uZxcXGbb2vmHwCHAABdEwC5JQCRkZFra2sq0gSNAAADqklEQVR4nO3d6XLaMBhGYYoLxGbfgiFAkia9/1tsZzKNPzW8QbKFl+Scf50A1gN0RhYeufcjXv14RRxVL+JrIUSIsFwIQ0KIEGG5EIb0ZYTrweXy/V2s9rk4xroWoXzjD8NYHSJ+uDGFo16sRggRIkSIECFChAhLCNf2IIeRKBrwL1HkTFj9puF+wsFtPqoScjuQAUKECBEiRIgQYZAwty/8NBXVLcwrCs3Cb/64LVZrn+9nl7uvgTh8KAayfcx9loq10L5b21GxWrvYzC+3Wdxe2DPLxqOtHWJF4d2wOMZi+fNyyzqEFnuHECFChAgRIkQYJHxemLTQVMscNVyoFn6f7jfLIvla5jGbWqbhXkvFjlCdBk5nc/NZSaF5zHxWx7mUSZ84IkSIECFChAgRIkSIECFChAgRIkSI8AbCXAnbuV4qhc5FGj37l729/Nc+f9rGNe//iGZ1eG9RjtD+PCFrze8WMvcHDYQfQ9h8CK+FsPkQXgth81UWNnp9qU9VhdMmrxH2qqqwpy7zbguwurD1Iex+CLsfwu6HsPsh7H4Iux/C7oew+yHsfgi737cWHs3GAh3GfiL8dSz2ZHjoLvEToVOTW5hUCyHC9ocQYftDiLD9IfyXvZpWzlHttga6Olj2Ctqjn9CmpuHu1hRNfh303sp+QnXi6H4fECJEiBAhQoQI2y10lorlNrAy53ZlwYOveB8zP6FdKrY5W/nKnFvOvYQShy8+96I7yrH7CWV+2zHbZwT/NuL5P0FWUei3pbZ9BkKEwSG8EkKECBF6hPBK4cKjvG2b6KCnnF7pfTF26Xu7cTxhxMZ2iPYP7r4Y9h/O3iZp8l7WUmFWDDGVo0KIECFChAgRIvw2wmRi13frFv5WK82TJJpwclLjrUMoj3GaxBOuWilcIUSIECFChAgRXhI6910zi5FZo7M2eTPjUybWS/V91+SwzsmkyD5o0PfJ623wy4wjOXsdw09oz1MaFhYDcc/p5DMQIkSIMDSEH0OI8MsI0+y9xD6odmFSDCStKlybtdfXcdH5tCpKPS4RHsips24lOp3NSF69jqGFNuejyszsd3X9uaWaiDI7EL8TmxJCeeIYMbtgb9OngTKEbyGMHkKEJoRvIYwewuhCv6XiiJm1Xie98CvzEzr1VZmaTQaXyWOEDzemMBVfrfBSeQyECBEiRIgQIcJbC3dZrHbyGLUI12rldxyviIvLJYQy+caHF3FUCENCiBBhuRCGhBAhwnJ9feEf2OgodfUUggoAAAAASUVORK5CYII=" alt="Aquí aparecerá el Pokémon">
+    <textarea id="pokedex-input" rows="3" cols="25" placeholder="Número de Pokédex"></textarea>
     <div class="botones">
       <button id="boton">Mostrar</button>
     </div>
