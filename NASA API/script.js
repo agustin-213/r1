@@ -1,31 +1,20 @@
 // 1) Guardamos referencias a elementos del DOM por su id
-let titulo = document.querySelector('#titulo')    // <h1 id="titulo">
-let imagen = document.querySelector('#imagen')    // <img id="imagen">
-let boton = document.querySelector('#boton')      // <button id="boton">
+let titulo = document.querySelector('#titulo')
+let fecha = document.querySelector('#fecha')
+let imagen = document.querySelector('#imagen')
+let boton = document.querySelector('#boton')
 
 // 2) Cuando el usuario hace clic en el botón, se ejecuta esta función
 boton.onclick = function () {
+    fetch('https://api.nasa.gov/planetary/apod?api_key=ZsMXsJQczfnsYNTfVeHnUedrKpwJw829HKQyb8Mb')
+        .then(respuesta => respuesta.json())
+        .then(datos => {
+            console.log(datos) // ver qué devuelve la API
 
-    // 3) fetch() hace una solicitud HTTP (GET por defecto) a la URL dada.
-    //    Devuelve una Promesa que se resuelve con un objeto Response
-    //    cuando el servidor contesta.
-    fetch('https://api.nasa.gov/planetary/apod')
-
-    // 4) Primer .then():
-    //    Recibe el objeto Response (lo llamamos "respuesta").
-    //    respuesta.json() lee el cuerpo de la respuesta y lo convierte a
-    //    un objeto JavaScript (desde JSON). OJO: json() también devuelve
-    //    otra Promesa, por eso encadenamos otro .then().
-    .then(respuesta => respuesta.json())
-
-    // 5) Segundo .then():
-    //    Acá "datos" ya es el objeto JS con la información del Pokémon.
-    .then(datos => {
-        console.log(datos) // Mostramos todo el objeto en la consola para inspección.
-
-        // 6) Actualizamos el DOM usando propiedades del objeto "datos":
-        //    - datos.name: nombre del Pokémon
-        //    - datos.sprites.front_shiny: URL de la imagen (sprite shiny)
-        titulo.textContent = datos.titulo
-        imagen.src = datos.imagen
-    }
+            // 3) Actualizamos el DOM con los datos correctos
+            titulo.textContent = datos.title
+            fecha.textContent = datos.date
+            imagen.src = datos.url
+        })
+        .catch(error => console.error('Error al obtener datos de la NASA:', error))
+}
