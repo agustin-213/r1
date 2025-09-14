@@ -12,7 +12,7 @@
     <style>
         body {
             background: #3c0bb8;
-            background: linear-gradient(180deg, rgba(60, 11, 184, 1) 0%, rgb(9, 53, 247) 43%, rgb(9, 153, 197) 100%);
+            background: linear-gradient(180deg, rgb(21, 2, 192) 0%, rgb(9, 53, 247) 43%, rgb(9, 153, 197) 100%);
             font-family: 'Segoe UI', Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -57,14 +57,17 @@
         }
 
         #imagen {
-            width: 200px;
-            height: 200px;
-            object-fit: contain;
-            margin-bottom: 20px;
+            width: 100%;          /* que ocupe todo el ancho disponible */
+            max-width: 300px;     /* máximo tamaño que querés */
+            height: auto;         /* mantiene proporción */
+            display: block;       /* para centrar */
+            margin: 0 auto 20px auto; /* margen inferior para separar del título */
             border-radius: 12px;
             background: #f1f2f6;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            object-fit: contain;  /* mantiene la imagen completa sin recortar */
         }
+
 
         .botones {
             display: flex;
@@ -91,12 +94,14 @@
 
     <div class="caja">
         <h1>Picture Randomizer</h1>
-        <img id="imagen" src="" alt="Imagen del día">
+        <img id="imagen" src="" alt="">
         <h2 id="titulo">Name</h2>
         <h3 id="fecha">Date</h3>
         <div class="botones">
             <button id="boton"> 🍀🍀🍀 </button>
         </div>
+        <h4>Send Donations To</h4>
+        <h4>AgustinAvila-mp</h4>
     </div>
 
     <!-- script al final para que cargue después del DOM -->
